@@ -1,7 +1,7 @@
 <h1 align="center"> Explorer Lab #01: RocketPay </h1>
 
 <p align="center">
-Evento exclusivo e gratuito, promovido pela Rocketseat para ensino de tecnologias WEB.
+O Explorer lab é um evento exclusivo e gratuito, promovido pela Rocketseat para ensino de tecnologias WEB. 
 </p>
 
 <p align="center">
@@ -33,7 +33,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Projeto
 
-O Rocketpay é um componente que simula o formulário de preenchimento de cartão de crédito, onde é possível adicionar máscara aos inputs e atualizar elementos HTML via DOM.
+O Rocketpay é um componente que simula o formulário de preenchimento de um cartão de crédito, onde é possível adicionar máscara aos inputs e atualizar elementos HTML via DOM. Dependendo da bandeira do cartão inserido o layout da página irá mudar, essas atualizações são feitas utilizando javaScript e IMask.  
 
 ## 🔖 Layout
 

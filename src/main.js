@@ -15,6 +15,7 @@ const cclogo = document.querySelector(
 
 globalThis.setCardType = setCardType
 
+// Tipos de cartão
 function setCardType(type) {
   const colors = {
     visa: ["#436D99", "#2D57F2"],
@@ -28,8 +29,7 @@ function setCardType(type) {
   cclogo.setAttribute("src", `cc-${type}.svg`)
 }
 
-setCardType("amex")
-
+// IMask config
 const securityCode = document.querySelector("#security-code")
 const securityCodePattern = {
   mask: "0000"
@@ -88,9 +88,45 @@ const cardNumberPatter = {
     const foundMask = dynamicMasked.compiledMasks.find(function (item) {
       return number.match(item.regex)
     })
-  
+
     return foundMask
   }
 }
-
 const cardNumberMasked = IMask(cardNumber, cardNumberPatter)
+
+const formulario = document.querySelector("form")
+formulario.addEventListener("submit", e => {
+  e.preventDefault()
+})
+
+const addButton = document.querySelector("#addCard")
+addButton.addEventListener("click", e => {
+  console.log("adicionei cartão!")
+})
+
+const cardHolder = document.querySelector("#card-holder")
+cardHolder.addEventListener("input", () => {
+  const ccHolder = document.querySelector(".cc-holder .value")
+  ccHolder.innerText =
+    cardHolder.value.length === 0 ? "FULANO DA SILVA" : cardHolder.value
+})
+
+const cardNumberHolder = document.querySelector("#card-number")
+
+securityCodeMasked.on("accept", () => {
+  updateSecurityCode(securityCodeMasked.value)
+})
+
+function updateSecurityCode(code) {
+  const ccSecutiry = document.querySelector(".cc-security .value")
+  ccSecutiry.innerText = code.length === 0 ? "123" : code
+}
+
+cardNumberMasked.on("accept", () => {
+  updateCardNumber(cardNumberHolder.value)
+})
+
+function updateCardNumber(number) {
+  const ccNumber = document.querySelector(".cc-number")
+  ccNumber.innerText = number.length === 0 ? "1234 5678 9012 3456" : number
+}
