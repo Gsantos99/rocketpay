@@ -13,6 +13,7 @@ const cclogo = document.querySelector(
   "#app > section > div.cc-logo > span:nth-child(1) > img"
 )
 
+// Function global
 globalThis.setCardType = setCardType
 
 // Tipos de cartão
@@ -55,6 +56,7 @@ const expirationDatePattern = {
 }
 const expirationDateMasked = IMask(expirationDate, expirationDatePattern)
 
+// Regex dos cartões
 const cardNumber = document.querySelector("#card-number")
 const cardNumberPatter = {
   mask: [
@@ -74,7 +76,7 @@ const cardNumberPatter = {
     },
     {
       mask: "0000 0000 0000 0000",
-      regex: /^3[47][0-9]{13}/,
+      regex: /^3[47]\d{0,13}/,
       cardtype: "amex"
     },
     {
@@ -123,10 +125,21 @@ function updateSecurityCode(code) {
 }
 
 cardNumberMasked.on("accept", () => {
+  const cardType = cardNumberMasked.masked.currentMask.cardtype
+  setCardType(cardType)
   updateCardNumber(cardNumberHolder.value)
 })
 
 function updateCardNumber(number) {
   const ccNumber = document.querySelector(".cc-number")
   ccNumber.innerText = number.length === 0 ? "1234 5678 9012 3456" : number
+}
+
+expirationDateMasked.on("accept", () => {
+  updateExpirationDate(expirationDateMasked.value)
+})
+
+function updateExpirationDate(date) {
+  const ccExpiration = document.querySelector(".cc-expiration .value")
+  ccExpiration.innerText = date.length === 0 ? "02/32" : date
 }
